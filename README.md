@@ -1,0 +1,3 @@
+This is a game development project for programming beginners to practice and learn. 
+Using Pygame, I will explore managing graphics, animations, and even sounds, making it easier for you to develop complex games. 
+By leveraging Pygame to handle tasks such as drawing images on the screen, you can focus more on the higher-level logic of your program, avoiding the many tedious and challenging coding details.
