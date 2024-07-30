@@ -7,12 +7,18 @@ def check_keydown_events(event,ai_settings,screen,ship,bullets):
     """响应按键"""
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
-    elif event.key == pygame.K_SPACE:
-        # 创建一颗弹药
-        new_bullet = Bullet(ai_settings,screen,ship)
-        bullets.add(new_bullet)
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
+    elif event.key == pygame.K_SPACE:
+        fire_bullet(ai_settings,screen,ship,bullets)
+
+def fire_bullet(ai_settings,screen,ship,bullets):
+    #创建新的弹药并将其加入到编组bullets中
+    # 创建一颗弹药
+    if len(bullets)<ai_settings.bullet_allowed:
+        new_bullet = Bullet(ai_settings,screen,ship)
+        bullets.add(new_bullet)
+
 
 
 
@@ -34,7 +40,14 @@ def check_events(ai_settings,screen,ship,bullets):
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ai_settings,screen,ship,bullets)
 
-
+def update_bullets(bullets):
+    #更新位置
+    bullets.update()
+    # 删除消失的子弹
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+    print(len(bullets))
 def update_screen(ai_settings, screen, ship,bullets):
     """更新屏幕上的图像，并切换到新屏幕"""
     screen.fill(ai_settings.bg_color)
