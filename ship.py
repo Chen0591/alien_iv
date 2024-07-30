@@ -10,7 +10,7 @@ class Ship():
         self.ai_settings = ai_settings
         # 加载飞船图像并获取其外接矩形
         try:
-             self.image = pygame.image.load('images/ufo_1(1).png')
+             self.image = pygame.image.load('images/flight_plane.png')
         except pygame.error as e:
             print(f'无法加载图像：{e}')
             sys.exit()
